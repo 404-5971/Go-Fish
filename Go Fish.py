@@ -14,7 +14,7 @@ class Player:
         print("Your current hand:")
         for card in self.hand:
             print(card)
-            time.sleep(0.5)
+            time.sleep(0.1)
         print("Which card would you like to ask for?")
         while True:
             card = input("> ").strip().lower()
@@ -49,7 +49,7 @@ class Player:
             break
 
         print(f"You asked for the {card}.")
-        time.sleep(0.5)
+        time.sleep(0.3)
         print("Who would you like to ask? (Enter their name)")
         while True:
             player_name = input("> ").strip()
@@ -63,7 +63,7 @@ class Player:
             print(f"That player doesn't exist. Please ask {BOT1.name}, {BOT2.name}, or {BOT3.name}")
 
         print(f"You asked {target_player.name} for a {card}.")
-        time.sleep(0.5)
+        time.sleep(0.3)
 
         # Check if the target player has the requested card
         matching_cards = [c for c in target_player.hand if card.lower() in c.lower()]
@@ -72,10 +72,10 @@ class Player:
             for match in matching_cards:
                 target_player.hand.remove(match)
                 self.hand.append(match)
-                time.sleep(0.5)
+                time.sleep(0.3)
         else:
             print(f"{target_player.name} doesn't have a {card}.")
-            time.sleep(0.5)
+            time.sleep(0.3)
             print("Go fish!")
             if MAIN_DECK.cards:
                 drawn_card = MAIN_DECK.cards.pop()
@@ -131,7 +131,7 @@ class Bot:
         target_player = random.choice(possible_targets)
         
         print(f"{self.name} asks {target_player.name} for a {chosen_rank}")
-        time.sleep(0.5)
+        time.sleep(0.3)
         
         # Check if target has matching cards
         matching_cards = [c for c in target_player.hand if chosen_rank.lower() in c.lower()]
@@ -140,14 +140,14 @@ class Bot:
             for match in matching_cards:
                 target_player.hand.remove(match)
                 self.hand.append(match)
-                time.sleep(0.5)
+                time.sleep(0.3)
         else:
             print(f"{target_player.name} doesn't have a {chosen_rank}")
             print(f"{self.name} goes fish!")
             if MAIN_DECK.cards:
                 drawn_card = MAIN_DECK.cards.pop()
                 self.hand.append(drawn_card)
-                time.sleep(0.5)
+                time.sleep(0.3)
     
     def check_books(self):
         rank_counts = {}
@@ -198,7 +198,7 @@ def shuffle_and_deal():
         BOT3.hand.append(MAIN_DECK.cards.pop())
 
 def go_fish():
-    print("Welcome to Go Fish!")
+    print("Welcome to Go Fish! {PLAYER.name}!")
     shuffle_and_deal()
     time.sleep(0.5)
     print(f"Today you're up against three gentleman: {BOT1.name}, {BOT2.name}, and {BOT3.name}.")
