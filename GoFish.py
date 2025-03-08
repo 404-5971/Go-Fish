@@ -64,9 +64,9 @@ class Player:
             
             # I'm pretty sure we don't need this but I'll leave it here for now
             # Check if player has the card
-            if card not in self.hand:
-                print("You don't have that card in your hand. Try again.")
-                continue
+            # if card not in self.hand:
+            #     print("You don't have that card in your hand. Try again.")
+            #     continue
             
             card = card.capitalize()
             break
